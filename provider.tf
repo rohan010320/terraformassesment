@@ -1,4 +1,3 @@
-##we are creating provider block for azure
 terraform {
   required_providers {
     azurerm = {
@@ -21,8 +20,6 @@ terraform {
     }
 }
 
-# Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
 }
-###now if you run terraform init command as per the provider block it will download all the plugin

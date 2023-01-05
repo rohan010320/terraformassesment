@@ -1,4 +1,3 @@
-##3we will create subnet
 resource "azurerm_subnet" "bastionsubnet" {
   name                 = "${local.resource_name_prefix}-${var.bastion_subnet_name}"
   resource_group_name  = azurerm_resource_group.rg.name
@@ -6,14 +5,12 @@ resource "azurerm_subnet" "bastionsubnet" {
   address_prefixes     = var.bastion_subnet_address
 }
 
-##we will create an nsg --nsg need to be attached with your subnet
 resource "azurerm_network_security_group" "bastion_subnet_nsg" {
   name                = "${var.bastion_subnet_name}-nsg"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 }
 
-#the top level nsg we will assoicate with subnet
 resource "azurerm_subnet_network_security_group_association" "bastion_subnet_nsg_associate" {
     depends_on = [
       azurerm_network_security_rule.bastion_nsg_rule_inbound
@@ -27,7 +24,7 @@ locals {
   "120":"3389"
 
   }
-  ##in terraform if your key start with a numeric  then the difference between key and value need to put :
+ 
 }
 resource "azurerm_network_security_rule" "bastion_nsg_rule_inbound" {
   for_each = local.web_inbound_port

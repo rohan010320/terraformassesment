@@ -1,5 +1,4 @@
 locals {
-  #the purpose of local values is to do concatination of multiple varaiblename 
   owners = var.business_division
   environment = var.environment
   #3now we want to concatinate above mentioned varaible togetherasda
